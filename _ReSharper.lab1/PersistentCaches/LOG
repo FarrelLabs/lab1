@@ -1,0 +1,5 @@
+2012/09/23-14:52:59.441 bbc Recovering log #70
+2012/09/23-14:52:59.441 bbc Level-0 table #73: started
+2012/09/23-14:52:59.475 bbc Level-0 table #73: 228 bytes OK
+2012/09/23-14:52:59.525 bbc Delete type=0 #70
+2012/09/23-14:52:59.525 bbc Delete type=3 #68

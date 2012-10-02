@@ -1,0 +1,5 @@
+C:\Users\Farrel\documents\visual studio 2010\Projects\lab1\lab1\bin\Debug\lab1.exe
+C:\Users\Farrel\documents\visual studio 2010\Projects\lab1\lab1\bin\Debug\lab1.pdb
+C:\Users\Farrel\documents\visual studio 2010\Projects\lab1\lab1\obj\x86\Debug\lab1.exe
+C:\Users\Farrel\documents\visual studio 2010\Projects\lab1\lab1\obj\x86\Debug\lab1.pdb
+C:\Users\Farrel\documents\visual studio 2010\Projects\lab1\lab1\obj\x86\Debug\lab1.csproj.ResolveComReference.cache
