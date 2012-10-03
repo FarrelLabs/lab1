@@ -23,17 +23,16 @@ namespace lab1
             temp = dft.Transform(sig.Sample);
             rpb.AddInfo(temp, true, true);
             rpb.AddString(String.Format("Discrete Fourier transform. {0} Iterations", dft.ActionCount));
-            temp = dft.Inverse(temp);
-            //temp = sig.ApplyStep(temp);
-            rpb.AddInfo(temp, false, true);
-            rpb.AddString(String.Format("Inverse discrete Fourier transform. {0} Iterations", dft.ActionCount));
+            //temp = dft.Inverse(temp);
+            //rpb.AddInfo(temp, false, true);
+            //rpb.AddString(String.Format("Inverse discrete Fourier transform. {0} Iterations", dft.ActionCount));
 
             temp = fft.Transform(sig.Sample);
-            rpb.AddInfo(temp, false, true);
+            rpb.AddInfo(temp, true, true);
             rpb.AddString(String.Format("Fast Fourier transform. {0} Iterations", fft.ActionCount));
-            temp = fft.Inverse(temp);
-            rpb.AddInfo(temp, false, true);
-            rpb.AddString(String.Format("Inverse fast Fourier transform. {0} Iterations", fft.ActionCount));
+            //temp = fft.Inverse(temp);
+            //rpb.AddInfo(temp, false, true);
+            //rpb.AddString(String.Format("Inverse fast Fourier transform. {0} Iterations", fft.ActionCount));
             
             rpb.Show();
         }

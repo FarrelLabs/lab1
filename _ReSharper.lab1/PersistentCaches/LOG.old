@@ -1,5 +1,5 @@
-2012/10/02-12:47:45.901 fe8 Recovering log #77
-2012/10/02-12:47:45.901 fe8 Level-0 table #79: started
-2012/10/02-12:47:45.944 fe8 Level-0 table #79: 6297 bytes OK
-2012/10/02-12:47:46.006 fe8 Delete type=0 #77
-2012/10/02-12:47:46.006 fe8 Delete type=3 #75
+2012/10/03-12:39:07.742 940 Recovering log #83
+2012/10/03-12:39:07.742 940 Level-0 table #86: started
+2012/10/03-12:39:07.804 940 Level-0 table #86: 1366 bytes OK
+2012/10/03-12:39:07.909 940 Delete type=0 #83
+2012/10/03-12:39:07.909 940 Delete type=3 #81

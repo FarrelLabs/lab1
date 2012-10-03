@@ -6,9 +6,9 @@
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Signals/f:ISignal.cs" caret="159" fromTop="8" />
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:DftTransformer.cs" caret="603" fromTop="6" />
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Signals/f:Signal.cs" caret="1419" fromTop="16" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:FftTransformer.cs" caret="867" fromTop="28" />
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:FunctionTableItem.cs" caret="369" fromTop="16" />
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:Program.cs" caret="663" fromTop="12" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:FftTransformer.cs" caret="619" fromTop="10" />
   </RecentFiles>
   <RecentEdits>
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:TempComplex.cs" caret="184" fromTop="10" />
