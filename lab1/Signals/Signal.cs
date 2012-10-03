@@ -23,14 +23,20 @@ namespace lab1
         }
         public FunctionTableItem[] Sample { get; protected set; }
 
-        public Signal(int periodNum = 1)
+
+
+        public Signal(Function fnc,double period,int periodNum = 1)
         {
+            Func = fnc;
+            Period = period;
             PeriodNum = periodNum;
         }
 
         public FunctionTableItem[] GenerateSample(int n, double period)
         {
             Sample = new FunctionTableItem[n];
+            for (int i = 0; i < n; i ++ )
+                Sample[i] = new FunctionTableItem();
             Period = period;
             Step = Period*PeriodNum/n;
             return GenerateSample();

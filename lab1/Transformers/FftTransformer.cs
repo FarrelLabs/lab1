@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Collections;
+
 
 namespace lab1.Converters
 {
@@ -11,47 +13,33 @@ namespace lab1.Converters
         public int ActionCount { get; private set; }
         public FunctionTableItem[] Transform(FunctionTableItem[] original)
         {
-            //TempComplex y, z, rezEven, rezOdd;
-            Complex even, odd, _exp;
+            int dist;
             FunctionTableItem[] image = new FunctionTableItem[original.Length];
-            int lim = original.Length/2 - 1;
-            //Complex t = new Complex(1,2);
-            ActionCount = 0;
-            for (int k = 0; k < lim; k++ )
+            if (original.Length > 1)
             {
-                //rezEven.re = rezEven.im = 0;
-                //rezOdd.re = rezOdd.im = 0;
-                even = new Complex(0,0);
-                odd = new Complex(0, 0);
-                for(int m = 0; m < lim ; m++)
-                {
-                    ActionCount++;
-                    even += (original[m].Value +
-                            original[m + original.Length/2].Value)*
-                            (Math.Cos(4*Math.PI*k*m/original.Length) -
-                             Math.Sin(4*Math.PI*k*m/original.Length)*Complex.ImaginaryOne);
-                    odd += (original[m].Value -
-                            original[m + original.Length / 2].Value) *
-                            (Math.Cos(2 * Math.PI * m / original.Length) -
-                             Math.Sin(2 * Math.PI * m / original.Length) * Complex.ImaginaryOne)*
-                             (Math.Cos(4 * Math.PI * k * m / original.Length) -
-                             Math.Sin(4 * Math.PI * k * m / original.Length) * Complex.ImaginaryOne); 
-                    //y.re = original[m].Value.Real + original[m + original.Length/2].Value.Real;
-                    //z.re = (original[m].Value.Real - original[m + original.Length / 2].Value.Real)*
-                    //    Math.Cos(2*Math.PI*m/original.Length);
-                    //z.im = (original[m].Value.Real - original[m + original.Length / 2].Value.Real)*
-                    //    (-Math.Sin(2 * Math.PI * m / original.Length));
+                dist = original.Length/2;
 
-                    //t = t*t;
-                    //rezEven.re += 
-                    //rezEven.im +=
-                }
-                image[ 2 * k ].Value = even;
-                image[ 2 * k ].Arg = 2*k;
-                image[ 2 * k + 1 ].Value = odd;
-                image[ 2 * k + 1 ].Arg = 2 * k + 1;
+                for (int i = 0; i < dist; i++)
+                    Butterfly(original[i], original[i + dist], original.Length);
+
+                Transform(original.Take(dist).ToArray()).CopyTo(original, 0);
+                Transform(original.Skip(dist).ToArray()).CopyTo(original, dist);
             }
-                return image;
+
+            return original;
+        }
+
+        public int Butterfly(FunctionTableItem a, FunctionTableItem b, int n)
+        {
+            Complex tempa = a.Value + b.Value;
+            Complex tempb = (a.Value - b.Value)*
+                Complex.Pow(Complex.Exp(-Complex.ImaginaryOne*2*Math.PI/n) , 
+                new Complex(a.Arg, 0));
+
+            a.Value = tempa;
+            b.Value = tempb;
+
+            return 0;
         }
 
         public FunctionTableItem[] Inverse(FunctionTableItem[] image)

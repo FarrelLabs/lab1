@@ -18,6 +18,8 @@ namespace lab1.Converters
         public FunctionTableItem[] Transform(FunctionTableItem[] original)
         {
             FunctionTableItem[] image = new FunctionTableItem[original.Length];
+            for (int i = 0; i < original.Length; i++ )
+                image[i] = new FunctionTableItem();
             ActionCount = 0;
             Complex tmp;
             for (int n = 0; n < original.Length; n++)
@@ -37,6 +39,8 @@ namespace lab1.Converters
         public FunctionTableItem[] Inverse(FunctionTableItem[] image)
         {
             FunctionTableItem[] original = new FunctionTableItem[image.Length];
+            for(int i = 0 ;  i < image.Length ; i++)
+                original[i] = new FunctionTableItem();
             double temp;
             ActionCount = 0;
             
