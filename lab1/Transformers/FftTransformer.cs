@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace lab1.Converters
 {
-    class FftTransformer : ITransformer
+    class FFTTransformer : ITransformer
     {
         public int ActionCount { get; private set; }
 
@@ -16,11 +16,16 @@ namespace lab1.Converters
         {
             FunctionTableItem[] image;
 
-            image = FTTransform(original);
+            image = FTTransform(original, -1);
 
             image = Swap(image);
 
-            return image;
+            for (int i = 0; i < image.Length; i++ )
+            {
+                image[i].Value *= (double)2/image.Length;
+            }
+
+                return image;
         }
 
         private FunctionTableItem[] Swap(FunctionTableItem[] toSwap)
@@ -31,7 +36,7 @@ namespace lab1.Converters
 
             map = GetBinaryInvertedList(toSwap.Length);
 
-            for(int i = 0 ; i < toSwap.Length ; i++)
+            for(int i = 0 ; i < toSwap.Length/2 ; i++)
             {
                 tmp = toSwap[i];
                 toSwap[i] = toSwap[map[i]];
@@ -39,12 +44,12 @@ namespace lab1.Converters
                 toSwap[i].Arg = i;
             }
 
-
-
+            for (int i = 0; i < toSwap.Length; i++)
+                toSwap[i].Arg = i;
             return toSwap;
         }
 
-        public FunctionTableItem[] FTTransform(FunctionTableItem[] original)
+        public FunctionTableItem[] FTTransform(FunctionTableItem[] original, int direction)
         {
             int dist;
             FunctionTableItem[] image = new FunctionTableItem[original.Length];
@@ -53,24 +58,26 @@ namespace lab1.Converters
                 dist = original.Length/2;
 
                 for (int i = 0; i < dist; i++)
-                    Butterfly(original[i], original[i + dist], original.Length);
+                    Butterfly(original[i], original[i + dist], original.Length, i, direction);
 
-                FTTransform(original.Take(dist).ToArray()).CopyTo(original, 0);
-                FTTransform(original.Skip(dist).ToArray()).CopyTo(original, dist);
+                FTTransform(original.Take(dist).ToArray(), direction).CopyTo(original, 0);
+                FTTransform(original.Skip(dist).ToArray(), direction).CopyTo(original, dist);
             }
 
             return original;
         }
 
-        public int Butterfly(FunctionTableItem a, FunctionTableItem b, int n)
+        public int Butterfly(FunctionTableItem a, FunctionTableItem b, int n, int m, int direction)
         {
+            Complex W = Complex.Exp(direction * Complex.ImaginaryOne * 2 * Math.PI * m / n);
             Complex tempa = a.Value + b.Value;
-            Complex tempb = (a.Value - b.Value)*
-                Complex.Pow(Complex.Exp(-Complex.ImaginaryOne*2*Math.PI/n) , 
-                new Complex(a.Arg, 0));
+            Complex tempb = (a.Value - b.Value)*W;
+                            
 
             a.Value = tempa;
             b.Value = tempb;
+
+            this.ActionCount++;
 
             return 0;
         }
@@ -101,9 +108,13 @@ namespace lab1.Converters
 
         public FunctionTableItem[] Inverse(FunctionTableItem[] image)
         {
-            FunctionTableItem[] original = new FunctionTableItem[image.Length];
-            ActionCount = 0;
-            return image;
+            FunctionTableItem[] original;
+
+            original = FTTransform(image, 1);
+
+            original = Swap(original);
+
+            return original;
         }
     }
 }

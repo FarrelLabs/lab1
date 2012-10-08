@@ -30,7 +30,7 @@ namespace lab1.Converters
                     ActionCount++;
                     tmp += original[k].Value * Complex.Exp(-2*Complex.ImaginaryOne*Math.PI*n*k/original.Length);
                 }
-                image[n].Value = tmp/original.Length;
+                image[n].Value = tmp*2/original.Length;
                 image[n].Arg = n;
             }
             return image;
