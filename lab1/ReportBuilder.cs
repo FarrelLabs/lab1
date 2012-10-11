@@ -7,6 +7,14 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace lab1
 {
+    internal enum ValueIs
+    {
+        Magnitude,
+        Real,
+        Img,
+        Phase
+    };
+
     class ReportBuilder
     {
         private const int chartWidth = 300;
@@ -42,13 +50,13 @@ namespace lab1
             chartObject = charts.Add(400, LastIndex, chartWidth, chartHeight);
         }
 
-        public void AddInfo(FunctionTableItem[] fun, bool magnitude = false, bool addChart = false)
+        public void AddInfo(FunctionTableItem[] fun, ValueIs value = ValueIs.Magnitude, bool addChart = false)
         {
             Excel.Series series; 
             Excel.Range temp;
 
             range = range.get_Resize(2, fun.Length);
-            range.set_Value(Missing.Value, GetArray(fun, magnitude));
+            range.set_Value(Missing.Value, GetArray(fun, value));
 
             if (addChart)
             {
@@ -73,16 +81,27 @@ namespace lab1
             range = range.get_Offset(2, 0);
         }
 
-        private double[,] GetArray(FunctionTableItem[] fun, bool magnitude = false)
+        private double[,] GetArray(FunctionTableItem[] fun, ValueIs value = ValueIs.Magnitude)
         {
             double[,] temp = new double[2, fun.Length];
 
             for(int i = 0; i < fun.Length ; i++)
             {   
-                if(magnitude)
-                    temp[0, i] = fun[i].Value.Magnitude;
-                else
-                    temp[0, i] = fun[i].Value.Real;
+                switch(value)
+                {
+                    case ValueIs.Magnitude: 
+                        temp[0, i] = fun[i].Value.Magnitude;
+                        break;
+                    case ValueIs.Real: 
+                        temp[0, i] = fun[i].Value.Real;
+                        break;
+                    case ValueIs.Img: 
+                        temp[0, i] = fun[i].Value.Imaginary;
+                        break;
+                    case ValueIs.Phase:
+                        temp[0, i] = fun[i].Value.Phase;
+                        break;
+                }
                 temp[1, i] = fun[i].Arg;
             }
             return temp;

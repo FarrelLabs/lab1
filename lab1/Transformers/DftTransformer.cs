@@ -17,47 +17,49 @@ namespace lab1.Converters
 
         public FunctionTableItem[] Transform(FunctionTableItem[] original)
         {
+            FunctionTableItem[] res = DFTransform(original, -1);
+            for(int i = 0 ; i < res.Length ; i++)
+            {
+                res[i].Arg = i;
+            }
+            return res;
+        }
+
+        public FunctionTableItem[] DFTransform(FunctionTableItem[] original, int direction)
+        {
             FunctionTableItem[] image = new FunctionTableItem[original.Length];
+            Complex tmp;
+            Complex power;
+            
             for (int i = 0; i < original.Length; i++ )
                 image[i] = new FunctionTableItem();
             ActionCount = 0;
-            Complex tmp;
+            
             for (int n = 0; n < original.Length; n++)
             {
                 tmp = new Complex(0,0);
+                
                 for (int k = 0; k < original.Length; k++)
                 {
                     ActionCount++;
-                    tmp += original[k].Value * Complex.Exp(-2*Complex.ImaginaryOne*Math.PI*n*k/original.Length);
+                    power = direction * 2 * Complex.ImaginaryOne * Math.PI * n * k / original.Length;
+                    tmp += original[k].Value*Complex.Exp(power);
                 }
-                image[n].Value = tmp*2/original.Length;
-                image[n].Arg = n;
+                image[n].Value = tmp / Math.Sqrt((double)original.Length);
             }
             return image;
         }
 
         public FunctionTableItem[] Inverse(FunctionTableItem[] image)
         {
-            FunctionTableItem[] original = new FunctionTableItem[image.Length];
-            for(int i = 0 ;  i < image.Length ; i++)
-                original[i] = new FunctionTableItem();
-            double temp;
-            ActionCount = 0;
-            
-            for (int k = 0; k < image.Length; k++)
+            FunctionTableItem[] res = DFTransform(image, 1);
+
+            for(int i = 0 ; i < res.Length ; i++)
             {
-                temp = 0;
-                for (int n = 0; n < image.Length; n++)
-                {
-                    temp += image[n].Value.Real*Math.Cos(2*Math.PI*n*k/image.Length) -
-                            image[n].Value.Imaginary*Math.Sin(2*Math.PI*n*k/image.Length);
-                    ActionCount++;
-                }
-                original[k].Arg = k;
-                original[k].Value = new Complex(temp, 0);
+                res[i].Arg = i;
             }
 
-            return original;
+            return res;
         }
 
         

@@ -20,12 +20,10 @@ namespace lab1.Converters
 
             image = Swap(image);
 
-            for (int i = 0; i < image.Length; i++ )
-            {
-                image[i].Value *= (double)2/image.Length;
-            }
+//            for (int i = 0; i < image.Length; i++)
+//                image[i].Value /= Math.Sqrt((double)image.Length);
 
-                return image;
+            return image;
         }
 
         private FunctionTableItem[] Swap(FunctionTableItem[] toSwap)
@@ -110,9 +108,12 @@ namespace lab1.Converters
         {
             FunctionTableItem[] original;
 
-            original = FTTransform(image, 1);
+            original = FTTransform(image, -1);
 
-            original = Swap(original);
+            for (int i = 0; i < image.Length; i++)
+                image[i].Value /= Math.Sqrt((double)image.Length);
+
+            image = Swap(image);
 
             return original;
         }

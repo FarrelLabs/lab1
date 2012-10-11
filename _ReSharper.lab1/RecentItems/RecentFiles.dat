@@ -1,24 +1,24 @@
 ﻿<RecentFiles>
   <RecentFiles>
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:TempComplex.cs" caret="184" fromTop="10" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:ReportBuilder.cs" caret="3105" fromTop="76" />
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:ITransformer.cs" caret="215" fromTop="10" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Signals/f:ISignal.cs" caret="159" fromTop="8" />
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:FunctionTableItem.cs" caret="369" fromTop="16" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Signals/f:Signal.cs" caret="1419" fromTop="49" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:DftTransformer.cs" caret="2055" fromTop="26" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:Program.cs" caret="1382" fromTop="24" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:FftTransformer.cs" caret="634" fromTop="7" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Signals/f:Signal.cs" caret="1214" fromTop="43" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Signals/f:ISignal.cs" caret="0" fromTop="0" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:ReportBuilder.cs" caret="3436" fromTop="21" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:Program.cs" caret="647" fromTop="15" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:FftTransformer.cs" caret="1802" fromTop="60" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:DftTransformer.cs" caret="1764" fromTop="17" />
   </RecentFiles>
   <RecentEdits>
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:TempComplex.cs" caret="184" fromTop="10" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:ReportBuilder.cs" caret="2889" fromTop="6" />
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:ITransformer.cs" caret="215" fromTop="10" />
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Signals/f:ISignal.cs" caret="155" fromTop="7" />
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:FunctionTableItem.cs" caret="369" fromTop="16" />
     <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Signals/f:Signal.cs" caret="1093" fromTop="14" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:DftTransformer.cs" caret="2055" fromTop="26" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:Program.cs" caret="1382" fromTop="24" />
-    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:FftTransformer.cs" caret="603" fromTop="18" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:FftTransformer.cs" caret="3254" fromTop="4" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:ReportBuilder.cs" caret="3436" fromTop="21" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/f:Program.cs" caret="647" fromTop="15" />
+    <File id="6F55963C-2F89-4B64-B9B2-2FC1108A74FB/d:Transformers/f:DftTransformer.cs" caret="1689" fromTop="13" />
   </RecentEdits>
 </RecentFiles>
