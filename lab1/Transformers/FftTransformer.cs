@@ -20,10 +20,68 @@ namespace lab1.Converters
 
             image = Swap(image);
 
-//            for (int i = 0; i < image.Length; i++)
-//                image[i].Value /= Math.Sqrt((double)image.Length);
+            for (int i = 0; i < image.Length; i++)
+            {
+                image[i].Value /= Math.Sqrt((double) image.Length);
+                image[i].Arg = i;
+            }
 
             return image;
+        }
+
+        public FunctionTableItem[] Inverse(FunctionTableItem[] image)
+        {
+            FunctionTableItem[] original;
+
+            original = FTTransform(image, 1);
+
+            original = Swap(original);
+            
+            for (int i = 0; i < original.Length; i++)
+            {
+                original[i].Value /= Math.Sqrt((double) original.Length);
+                original[i].Arg = i;
+            }
+
+            return original;
+        }
+
+        public FunctionTableItem[] FTTransform(FunctionTableItem[] original, int direction)
+        {
+            int dist;
+            if (original.Length > 1)
+            {
+                dist = original.Length / 2;
+
+                for (int i = 0; i < dist; i++)
+                {
+                    Butterfly(original[i], original[i + dist], original.Length, i, direction);
+                }
+                FTTransform(original.Take(dist).ToArray(), direction).CopyTo(original, 0);
+                FTTransform(original.Skip(dist).ToArray(), direction).CopyTo(original, dist);
+                /*for(int i = 0 ; i < dist ; i++)
+                {
+                    original[2*i] = fe[i];
+                    original[2*i + 1] = fo[i];
+                }*/
+            }
+
+            return original;
+        }
+
+        public int Butterfly(FunctionTableItem a, FunctionTableItem b, int n, int m, int direction)
+        {
+            Complex W = Complex.Exp(direction * Complex.ImaginaryOne * 2 * Math.PI * m / n);
+            Complex tempa = a.Value + b.Value;
+            Complex tempb = (a.Value - b.Value) * W;
+
+
+            a.Value = tempa;
+            b.Value = tempb;
+
+            this.ActionCount++;
+
+            return 0;
         }
 
         private FunctionTableItem[] Swap(FunctionTableItem[] toSwap)
@@ -45,39 +103,6 @@ namespace lab1.Converters
             for (int i = 0; i < toSwap.Length; i++)
                 toSwap[i].Arg = i;
             return toSwap;
-        }
-
-        public FunctionTableItem[] FTTransform(FunctionTableItem[] original, int direction)
-        {
-            int dist;
-            FunctionTableItem[] image = new FunctionTableItem[original.Length];
-            if (original.Length > 1)
-            {
-                dist = original.Length/2;
-
-                for (int i = 0; i < dist; i++)
-                    Butterfly(original[i], original[i + dist], original.Length, i, direction);
-
-                FTTransform(original.Take(dist).ToArray(), direction).CopyTo(original, 0);
-                FTTransform(original.Skip(dist).ToArray(), direction).CopyTo(original, dist);
-            }
-
-            return original;
-        }
-
-        public int Butterfly(FunctionTableItem a, FunctionTableItem b, int n, int m, int direction)
-        {
-            Complex W = Complex.Exp(direction * Complex.ImaginaryOne * 2 * Math.PI * m / n);
-            Complex tempa = a.Value + b.Value;
-            Complex tempb = (a.Value - b.Value)*W;
-                            
-
-            a.Value = tempa;
-            b.Value = tempb;
-
-            this.ActionCount++;
-
-            return 0;
         }
 
         private int[] GetBinaryInvertedList(int length)
@@ -102,20 +127,6 @@ namespace lab1.Converters
             }
 
             return res;
-        }
-
-        public FunctionTableItem[] Inverse(FunctionTableItem[] image)
-        {
-            FunctionTableItem[] original;
-
-            original = FTTransform(image, -1);
-
-            for (int i = 0; i < image.Length; i++)
-                image[i].Value /= Math.Sqrt((double)image.Length);
-
-            image = Swap(image);
-
-            return original;
         }
     }
 }
